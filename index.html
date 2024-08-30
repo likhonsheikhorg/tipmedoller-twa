@@ -29,29 +29,59 @@
   <title>Tip Me a Dollar</title>
   <script type="module" crossorigin src="/assets/index-P0oc4blE.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-BVdYwMXx.css">
+  
+  <!-- Inline CSS for Popup Button -->
+  <style>
+    .join-btn {
+      position: fixed;
+      bottom: 1em;
+      right: 1em;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 3em;
+      height: 3em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s, transform 0.3s;
+    }
 
-  <!-- Google Translate -->
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'bn',
-        includedLanguages: 'en,bn'
-      }, 'google_translate_element');
+    .join-btn:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+
+    .join-btn.hidden {
+      display: none;
+    }
+  </style>
+  
+  <!-- Inline JavaScript for Button Click -->
+  <script>
+    function handleJoinClick() {
+      document.querySelector('.join-btn').classList.add('hidden');
+      window.open('https://t.me/likhondotxyz/61', '_blank');
     }
   </script>
-  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 
 <body>
-  <div id="google_translate_element"></div>
   <div id="root"></div>
 
   <!-- Attribution Section -->
   <footer style="text-align: center; margin-top: 2em;">
-    <p>Contribute or fork this project on <a href="https://github.com/likhonsheikhorg/tipmedoller-twa" target="_blank"><i class="fab fa-github"></i> GitHub</a>.</p>
-    <p>Follow us on <a href="https://twitter.com/likhonsheikh" target="_blank"><i class="fab fa-twitter"></i> Twitter</a> and <a href="https://www.linkedin.com/company/likhonsheikh" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>.</p>
-    <p>Sources: <a href="https://github.com/likhonsheikhorg/tipmedoller-twa" target="_blank">GitHub Repository</a></p>
+    <p>Sources: <a href="https://github.com/likhonsheikhorg/tipmedoller-twa" target="_blank">Open-Source!</a></p>
   </footer>
+
+  <!-- Join Button -->
+  <button class="join-btn" onclick="handleJoinClick()">
+    <i class="fab fa-telegram"></i>
+  </button>
 </body>
 
 </html>
