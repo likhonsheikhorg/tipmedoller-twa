@@ -28,22 +28,6 @@
   <title>Tip Me a Dollar</title>
   <script type="module" crossorigin src="/assets/index-P0oc4blE.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-BVdYwMXx.css">
-
-</head>
-<body>
-  <div class="container">
-    <div id="root"></div>
-  </div>
-  
-  <!-- Attribution Section -->
-  <footer>
-    <p>Sources: <a href="https://github.com/likhonsheikhorg/tipmedoller-twa" target="_blank">Open-Source!</a></p>
-  </footer>
-  
-  <!-- Join Button -->
-  <button class="join-btn" id="joinBtn">
-    <i class="fab fa-telegram"></i>
-  </button>
   
   <style>
     body {
@@ -65,6 +49,7 @@
       bottom: 20px;
       right: 20px;
       background-color: #007bff;
+      color: #fff;
       border: none;
       border-radius: 50%;
       width: 60px;
@@ -86,23 +71,25 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0.7);
+      background-color: #fff;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       z-index: 1001;
-      opacity: 0;
+      opacity: 0.4;
       visibility: hidden;
       transition: all 0.3s ease;
     }
     
     .popup.show {
-      opacity: 1;
+      opacity: 0.5;
       visibility: visible;
       transform: translate(-50%, -50%) scale(1);
     }
     
     .popup-content {
       text-align: center;
+      color: #000;
     }
     
     .popup h2 {
@@ -113,6 +100,8 @@
     .popup-btn {
       display: inline-block;
       padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
       text-decoration: none;
       border-radius: 5px;
       transition: background-color 0.3s ease;
@@ -139,9 +128,13 @@
     footer {
       text-align: center;
       margin-top: 2em;
+      padding: 20px;
+      background-color: transparent; /* No background color */
+      color: #fff; /* White text color */
+    }
     
     footer a {
-      color: #007bff;
+      color: #fff; /* White text color for links */
       text-decoration: none;
     }
     
@@ -149,6 +142,22 @@
       text-decoration: underline;
     }
   </style>
+</head>
+<body>
+  <div class="container">
+    <div id="root"></div>
+  </div>
+  
+  <!-- Attribution Section -->
+  <footer>
+    <p>Sources: <a href="https://github.com/likhonsheikhorg/tipmedoller-twa" target="_blank">Open-Source!</a></p>
+  </footer>
+  
+  <!-- Join Button -->
+  <button class="join-btn" id="joinBtn">
+    <i class="fab fa-telegram"></i>
+  </button>
+  
   <!-- Popup -->
   <div class="popup" id="popup">
     <div class="popup-content">
