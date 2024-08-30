@@ -25,11 +25,14 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-6qR8z/MdDw7UjewF8cWjAijD9Fshdd0EO8BlSBqRC34cMyX6TI0sw7p23wTsbT6XGsRJSxx8IP3rWCSxchCtw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8k9hx89U3e9sA0Pce8LFXHwhM0opON5T22dM4XvV5Ka2SFW1vXIgKJtk4VdBsEvW" crossorigin="anonymous">
 
   <title>Tip Me a Dollar</title>
   <script type="module" crossorigin src="/assets/index-P0oc4blE.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-BVdYwMXx.css">
-  
+
   <!-- Inline CSS for Popup Button -->
   <style>
     .join-btn {
@@ -49,6 +52,7 @@
       cursor: pointer;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       transition: background-color 0.3s, transform 0.3s;
+      animation: bounce 2s infinite;
     }
 
     .join-btn:hover {
@@ -56,16 +60,52 @@
       transform: scale(1.1);
     }
 
-    .join-btn.hidden {
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-20px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .join-popup {
       display: none;
+      position: fixed;
+      bottom: 6em;
+      right: 1em;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      padding: 1em;
+      z-index: 1000;
+      animation: fadeIn 0.5s;
+    }
+
+    .join-popup.show {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
-  
+
   <!-- Inline JavaScript for Button Click -->
   <script>
     function handleJoinClick() {
+      document.querySelector('.join-popup').classList.add('show');
       document.querySelector('.join-btn').classList.add('hidden');
-      window.open('https://t.me/likhondotxyz/61', '_blank');
+    }
+
+    function handlePopupClose() {
+      document.querySelector('.join-popup').classList.remove('show');
     }
   </script>
 </head>
@@ -73,15 +113,27 @@
 <body>
   <div id="root"></div>
 
+  <!-- Join Button -->
+  <button class="join-btn" onclick="handleJoinClick()">
+    <i class="fab fa-telegram"></i>
+  </button>
+
+  <!-- Popup -->
+  <div class="join-popup">
+    <h5>Join Us on Telegram</h5>
+    <p>Click the button below to join our Telegram group.</p>
+    <a href="https://t.me/likhondotxyz/61" target="_blank" class="btn btn-primary">Join Now</a>
+    <button type="button" class="btn btn-secondary mt-2" onclick="handlePopupClose()">Close</button>
+  </div>
+
   <!-- Attribution Section -->
   <footer style="text-align: center; margin-top: 2em;">
     <p>Sources: <a href="https://github.com/likhonsheikhorg/tipmedoller-twa" target="_blank">Open-Source!</a></p>
   </footer>
 
-  <!-- Join Button -->
-  <button class="join-btn" onclick="handleJoinClick()">
-    <i class="fab fa-telegram"></i>
-  </button>
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9DtxiS5iN6k0vLJh/svt4E9KKDjp7aU7cQbq92R/c0JYc2P0F3" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha384-Ce1mI7nFE4Th4bYFYeHjymO0PWhCmQGeE6P9D/kqF8tJ6FG7qJlz5Zq5A/Fl7nJm" crossorigin="anonymous"></script>
 </body>
 
 </html>
