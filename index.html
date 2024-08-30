@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="bn">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,104 +14,176 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Tip Me a Dollar" />
   <meta property="og:locale" content="bn_BD" />
-
+  
   <!-- Favicon and Touch Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
   <link rel="manifest" href="/assets/site.webmanifest">
   <link rel="shortcut icon" href="/favicon.ico">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-4gt2vZT9M4/2xICh2KT/GrcFv9Q8Q4nZw5ysUjFDF8Blx9V+SGxjGn6zkVlgxFS2C" crossorigin="anonymous">
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-6qR8z/MdDw7UjewF8cWjAijD9Fshdd0EO8BlSBqRC34cMyX6TI0sw7p23wTsbT6XGsRJSxx8IP3rWCSxchCtw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  
   <title>Tip Me a Dollar</title>
   <script type="module" crossorigin src="/assets/index-P0oc4blE.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-BVdYwMXx.css">
-
-  <!-- Inline CSS for Popup and Animations -->
+  
   <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
     .join-btn {
       position: fixed;
-      bottom: 2em;
-      right: 2em;
+      bottom: 20px;
+      right: 20px;
       background-color: #007bff;
       color: #fff;
       border: none;
       border-radius: 50%;
-      width: 4em;
-      height: 4em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2em;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
       cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      transition: opacity 0.3s, transform 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
       z-index: 1000;
     }
-
-    .join-btn.hidden {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-
+    
     .join-btn:hover {
       background-color: #0056b3;
       transform: scale(1.1);
     }
-
-    .modal-content {
+    
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.7);
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .popup.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .popup-content {
       text-align: center;
+    }
+    
+    .popup h2 {
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+    
+    .popup-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    
+    .popup-btn:hover {
+      background-color: #0056b3;
+    }
+    
+    .close-popup {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: #999;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    
+    .close-popup:hover {
+      color: #333;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 2em;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+    
+    footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
-
 <body>
-  <div id="root"></div>
-
+  <div class="container">
+    <div id="root"></div>
+  </div>
+  
   <!-- Attribution Section -->
-  <footer class="text-center mt-4">
+  <footer>
     <p>Sources: <a href="https://github.com/likhonsheikhorg/tipmedoller-twa" target="_blank">Open-Source!</a></p>
   </footer>
-
+  
   <!-- Join Button -->
-  <button class="join-btn" data-toggle="modal" data-target="#joinModal">
+  <button class="join-btn" id="joinBtn">
     <i class="fab fa-telegram"></i>
   </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="joinModalLabel">Join Us on Telegram</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Click below to join our Telegram group:</p>
-          <a href="https://t.me/likhondotxyz/61" target="_blank" class="btn btn-primary" onclick="hideJoinButton()">Join Now</a>
-        </div>
-      </div>
+  
+  <!-- Popup -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2>Join Our Telegram Group!</h2>
+      <p>Stay updated with the latest news and connect with our community.</p>
+      <a href="https://t.me/likhondotxyz/61" target="_blank" class="popup-btn">Join Now</a>
     </div>
+    <span class="close-popup" id="closePopup">&times;</span>
   </div>
-
-  <!-- Bootstrap JS and dependencies -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zyzt9A5QwVd3zFJ6U4A6Y72T8S5n52jwJ+4jZf9g" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js" integrity="sha384-g4T3dJOKVz5nyfZ6hsXo7vgFF6I6kNfD/4J1y68t1Hlv5N2lAT9/Z0y5M6/qa7t5" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-2dXyF1Ax3Fxi2xOxkI0vZAeQbbgGTfydh2G7yfJj4GgEjYth1zI+zK6CpYXktSgG" crossorigin="anonymous"></script>
-
-  <!-- Inline JavaScript for Button Click -->
+  
   <script>
-    function hideJoinButton() {
-      document.querySelector('.join-btn').classList.add('hidden');
-    }
+    const joinBtn = document.getElementById('joinBtn');
+    const popup = document.getElementById('popup');
+    const closePopup = document.getElementById('closePopup');
+    
+    joinBtn.addEventListener('click', () => {
+      popup.classList.add('show');
+    });
+    
+    closePopup.addEventListener('click', () => {
+      popup.classList.remove('show');
+    });
+    
+    window.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        popup.classList.remove('show');
+      }
+    });
   </script>
 </body>
-
 </html>
